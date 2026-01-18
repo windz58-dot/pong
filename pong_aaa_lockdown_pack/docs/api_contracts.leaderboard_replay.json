@@ -1,0 +1,82 @@
+{
+  "basePath": "/v1",
+  "endpoints": [
+    {
+      "path": "/leaderboard",
+      "method": "GET",
+      "query": {
+        "season": "string",
+        "page": "int",
+        "pageSize": "int"
+      },
+      "response": {
+        "season": "string",
+        "page": "int",
+        "pageSize": "int",
+        "items": [
+          {
+            "rank": "int",
+            "playerId": "string",
+            "displayName": "string",
+            "score": "int",
+            "updatedAt": "string"
+          }
+        ]
+      }
+    },
+    {
+      "path": "/leaderboard/submit",
+      "method": "POST",
+      "request": {
+        "playerId": "string",
+        "sessionId": "string",
+        "season": "string",
+        "scoreDelta": "int",
+        "attemptId": "string",
+        "rewardEventId": "string",
+        "replay": {
+          "format": "string",
+          "payloadB64": "string",
+          "sha256": "string"
+        },
+        "device": {
+          "deviceId": "string",
+          "platform": "string",
+          "appVersion": "string"
+        },
+        "net": {
+          "ipHint": "string",
+          "asnHint": "string"
+        }
+      },
+      "response": {
+        "accepted": "bool",
+        "newRank": "int",
+        "newScore": "int",
+        "risk": {
+          "risk_score": "number",
+          "high_risk": "bool"
+        },
+        "shadow": "bool",
+        "reason": "string"
+      }
+    },
+    {
+      "path": "/replay/upload",
+      "method": "POST",
+      "request": {
+        "playerId": "string",
+        "attemptId": "string",
+        "replay": {
+          "format": "string",
+          "payloadB64": "string",
+          "sha256": "string"
+        }
+      },
+      "response": {
+        "ok": "bool",
+        "replayId": "string"
+      }
+    }
+  ]
+}
